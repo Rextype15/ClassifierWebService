@@ -1,6 +1,11 @@
 import javafx.util.*;
 import java.util.*;
 
+import com.opencsv.CSVReader;
+
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class NaiveBayesClassifier implements Classifier {
 
@@ -18,6 +23,30 @@ public class NaiveBayesClassifier implements Classifier {
         initialize(train);
         fillFrequencyTable();
     }
+
+    public NaiveBayesClassifier(String inputRoute){
+
+        classes = new HashMap<>();
+        frequencyTable = new HashMap<>();
+        vocabulary = new ArrayList<>();
+        rowCounter = 0;
+
+        ArrayList<Pair<String, String>> train = new ArrayList<>();
+
+        CSVReader reader = null;
+        try {
+            reader = new CSVReader(new FileReader(inputRoute));
+            String[] line;
+            while ((line = reader.readNext()) != null) {
+                train.add(new Pair<>(line[0], line[1]));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        initialize(train);
+        fillFrequencyTable();
+    }
+
 
     private void fillFrequencyTable() {
 

@@ -11,14 +11,7 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Pair<String, String>> train = new ArrayList<>();
-        train.add(new Pair<>("Chinese Beijing Chinese", "c"));
-        train.add(new Pair<>("Chinese Chinese Shanghai", "c"));
-        train.add(new Pair<>("Chinese Macao", "c"));
-        train.add(new Pair<>("Tokyo Japan Chinese", "j"));
-        train.add(new Pair<>("", ""));
-
-        NaiveBayesClassifier classifier = new NaiveBayesClassifier(train);
+        NaiveBayesClassifier classifier = new NaiveBayesClassifier("dataset.csv");
 
         get("/properties", (req, res) -> {
 
