@@ -16,14 +16,19 @@ public class Main {
         train.add(new Pair<>("Chinese Chinese Shanghai", "c"));
         train.add(new Pair<>("Chinese Macao", "c"));
         train.add(new Pair<>("Tokyo Japan Chinese", "j"));
+        train.add(new Pair<>("", ""));
 
         NaiveBayesClassifier classifier = new NaiveBayesClassifier(train);
 
         get("/properties", (req, res) -> {
-            String classification = classifier.classify(req.queryParams("word"));
-            return classification;
-        });
 
+
+            String inputWord = req.queryParams("word");
+            String classification = classifier.classify(inputWord);
+
+            return new ClassifiedObject(inputWord, classification);
+
+        }, new JsonTransformer());
 
 
 
