@@ -22,6 +22,7 @@ public class NaiveBayesClassifier implements Classifier {
 
         initialize(train);
         fillFrequencyTable();
+        System.out.println("Entrenamiento terminado");
     }
 
     public NaiveBayesClassifier(String inputRoute){
@@ -45,6 +46,7 @@ public class NaiveBayesClassifier implements Classifier {
         }
         initialize(train);
         fillFrequencyTable();
+        System.out.println("Entrenamiento terminado");
     }
 
 
